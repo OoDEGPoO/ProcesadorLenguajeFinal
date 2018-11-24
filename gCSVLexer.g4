@@ -1,5 +1,22 @@
-lexer grammar gFiboLexer;
+lexer grammar gCSVLexer;
 
+JSON: 'json';
+SCHEMA: 'schema';
+DOT: 'dot';
+NEATO: 'neato';
+SVG: 'svg';
+
+LETRAS: ([a-zA-Z]|'á'|'é'|'í'|'ó'|'ú')+;
+NUMEROS: [0-9]+;
+PTO: '.';
+COMA: ',';
+GUION: '-';
+SLASH: '/';
+WS: ' '+;
+TAB: '\t'+;
+INTRO: [\r\n]+;
+
+/* 
 INCLUDE: 'include';
 FUN: 'function';
 BEGIN: 'begin';
@@ -43,11 +60,7 @@ mode COMEN_LINEA_MODE;
 COMEN_LINEA_FIN: [\r\n]+ -> popMode;
 COMEN_LINEA_CAR: .+?;
 
-mode COMEN_MULTILINEA_MODE;
-COMEN_CERRAR: '*/' -> popMode;
-COMEN_MULTILINEA_CAR: .+?;
-
 mode TEXTO_MODE;
 TEXTO_ESPECIAL: '\\' .+?;
 TEXTO_CERRAR: '"' -> popMode;
-TEXTO_CARACTER: .+?;
+TEXTO_CARACTER: .+?;*/

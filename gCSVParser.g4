@@ -1,18 +1,50 @@
-parser grammar gFiboParser;
+parser grammar gCSVParser;
 options {
-    tokenVocab = gFiboLexer;
+    tokenVocab = gCSVLexer;
     language = Java;
 }
 
 fichero: prog*;
 
-prog:   comentario+ prog
-    |   prog comentario+
-    |   espacio+ prog
-    |   prog espacio+
-    |   incl
-    |   dfun
+prog:  prog intro
+    |   nombre coma rutafichero coma rutaficherosalida coma rutaficherografico
     ;
+
+nombre: nombre nombre
+    |   guion nombre
+    |   espacio nombre
+    |   nombre espacio
+    |   letras
+    |   numeros
+    ;
+
+rutafichero: ruta (ext_json|ext_schema);
+rutaficherosalida: ruta (ext_dot|ext_neato);
+rutaficherografico: ruta ext_svg;
+
+ruta: pto slash nombre;
+ext_json: pto json;
+ext_schema: pto schema;
+ext_dot: pto dot;
+ext_neato: pto neato;
+ext_svg: pto svg;   
+
+intro: INTRO;
+coma: COMA;
+guion: GUION;
+espacio: WS;
+letras: LETRAS;
+numeros: NUMEROS;
+json: JSON;
+schema: SCHEMA;
+dot: DOT;
+neato: NEATO;
+svg: SVG;
+pto: PTO;
+slash: SLASH;
+
+/*
+
 
 espacio: (WS|TAB|INTRO);
 tipo: (t_num|t_string|t_void);
@@ -95,4 +127,4 @@ opb_eq: OPB_EQ;
 opb_neq: OPB_NEQ;
 opb_lteq: OPB_LTEQ;
 opb_gteq: OPB_GTEQ;
-sseparador: SSEPARADOR;
+sseparador: SSEPARADOR;*/
