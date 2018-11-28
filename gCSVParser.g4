@@ -11,18 +11,26 @@ prog:  prog intro
     ;
 
 nombre: nombre nombre
-    |   guion nombre
     |   espacio nombre
     |   nombre espacio
     |   letras
     |   numeros
+    |   b_baja
+    |   guion
+    |   coma
     ;
 
 rutafichero: ruta (ext_json|ext_schema);
 rutaficherosalida: ruta (ext_dot|ext_neato);
 rutaficherografico: ruta ext_svg;
 
-ruta: pto slash nombre;
+ruta:   pto slash ruta
+    |   pto pto slash ruta
+    |   letras dpto slash ruta
+    |   slash ruta
+    |   ruta slash ruta
+    |   nombre
+    ;
 ext_json: pto json;
 ext_schema: pto schema;
 ext_dot: pto dot;
@@ -32,6 +40,7 @@ ext_svg: pto svg;
 intro: INTRO;
 coma: COMA;
 guion: GUION;
+b_baja: B_BAJA;
 espacio: WS;
 letras: LETRAS;
 numeros: NUMEROS;
@@ -41,6 +50,7 @@ dot: DOT;
 neato: NEATO;
 svg: SVG;
 pto: PTO;
+dpto: DPTO;
 slash: SLASH;
 
 /*
